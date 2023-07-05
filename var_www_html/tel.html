@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1> Welcome to our Page </h1>
+    <a id="sendSms" style="display: block;"> Send a SMS message</a> <br>
+    <a href="" id="callPhone" style="display: none;"> Call </a> <br>
+    <a id="sendEmail" style="display: none;" >  Email </a> <br>
+</body>
+
+<script type="text/javascript">
+
+	var aSms = document.getElementById('sendSms'); 
+	aSms.href = "sms://3068502192?body=I%27m%20interested%20in%20your%20CyberLab.%20Please%20contact%20me.)";
+    //document.getElementById("sendSms").click();
+
+    var aTel = document.getElementById('callPhone');
+	aTel.href = "tel:999999";
+    document.getElementById("callPhone").click();
+    
+
+    var aEmail = document.getElementById('sendEmail');
+    //aEmail.href = "mailto:gqx108@usask.ca?cc=someoneelse@example.com&bcc=andsomeoneelse@example.com&subject=Summer%20Party&body=You%20are%20invited%20to%20The%20Cyberlab!";
+
+
+    aEmail.href = "mailto:gqx108@usask.ca?subject=Summer%20Party&body=You%20are%20invited%20to%20The%20Cyberlab!";
+    //document.getElementById("sendEmail").click();
+
+    
+</script>
+</html> 

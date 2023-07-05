@@ -1,0 +1,43 @@
+<script>
+
+  //console.log(new Date().getTime());
+  
+  /*navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    alert('Mic Access Granted.');
+    // Do something with the audio stream
+  })
+  .catch(error => {
+    alert('Mic Access Denied.', error);
+  });
+*/
+
+   navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.start();
+
+    const audioChunks = [];
+    mediaRecorder.addEventListener("dataavailable", event => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks, {type: "text/plain"});
+      const reader = new FileReader();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+
+      /*reader.addEventListener('loadend', (e) => {
+  		const text = e.srcElement.result;
+  		alert(text);
+		});*/
+    });
+
+    setTimeout(() => {
+      mediaRecorder.stop();
+    }, 5000);
+  });
+
+</script>

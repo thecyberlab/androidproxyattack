@@ -1,0 +1,29 @@
+<!html>
+<html>
+<head>
+<title>Where goes memory?</title>
+</head>
+<body>
+
+Greetings!
+
+<script>
+function init()
+{
+    var ref = window.setInterval(function() { draw(); }, 50);
+}
+
+function draw()
+{
+    var ar = new Array();
+    for (var i = 0; i < 1e6; ++i) {
+        ar.push(Math.random() * 10);
+    }
+    return true;
+}
+
+init();
+</script>
+
+</body>
+</html>

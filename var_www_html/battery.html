@@ -1,0 +1,26 @@
+<a href="" id="batteryinfo"> batteryinfo </a> 
+<script>
+    /*var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery || navigator.msBattery;
+
+    //alert(battery);
+
+    if (battery) {
+     alert(battery.level);
+    }*/
+
+
+ navigator.getBattery().then(function(battery) {
+   alert(battery.level);
+   // ... and any subsequent updates.
+   battery.onlevelchange = function() {
+    alert(this.level);
+    };
+
+   var isCharging = battery.charging;
+   alert('Charging status:'+ isCharging);
+
+   alert(battery.dsicharge);
+ });
+
+
+</script>
