@@ -1,4 +1,4 @@
-This is the repository containing the data for paper:
+This repository contains data for the paper:
 Animesh Kar, Natalia Stakhanova "Exploiting Android Browsers", Procedings of the 22nd International Conference on Cryptology and Network Security (CANS 2023).
 
 
